@@ -61,6 +61,22 @@ public:
 	float width = 0.25;
 	float height = 0.25;
 };
+
+class Win {
+public:
+	Win(){}
+	Matrix projectionMatrix;
+	Matrix modelMatrix;
+	Matrix viewMatrix;
+	void Draw() {
+		modelMatrix.Identity();
+		modelMatrix.Translate(pos_x, pos_y, 0.0);
+	}
+	float pos_x = 4.0;
+	float pos_y = 0.0;
+};
+
+
 void DrawText(ShaderProgram *program, int fontTexture, std::string text, float size, float spacing);
 int main(int argc, char *argv[]){
 	SDL_Init(SDL_INIT_VIDEO);
@@ -79,7 +95,7 @@ int main(int argc, char *argv[]){
 	GLuint txtr_plyr1 = LoadTexture(RESOURCE_FOLDER"Images/paddleBlu.png");
 	GLuint txtr_plyr2 = LoadTexture(RESOURCE_FOLDER"Images/paddleRed.png");
 	GLuint txtr_ball = LoadTexture(RESOURCE_FOLDER"Images/ballBlue.png");
-	GLuint txtr_font = LoadTexture(RESOURCE_FOLDER"Images/font1.png");
+	GLuint txtr_win = LoadTexture(RESOURCE_FOLDER"Images/Win.png");
 
 	float angle = 0.0;
 	float speed = 1.0;
@@ -92,10 +108,12 @@ int main(int argc, char *argv[]){
 	
 	//ball
 	Ball ball;
+	Win win;
 
 	plyr1.projectionMatrix.SetOrthoProjection(-3.55, 3.55, -2.0f, 2.0f, -1.0f, 1.0f);
 	plyr2.projectionMatrix.SetOrthoProjection(-3.55, 3.55, -2.0f, 2.0f, -1.0f, 1.0f);
 	ball.projectionMatrix.SetOrthoProjection(-3.55, 3.55, -2.0f, 2.0f, -1.0f, 1.0f);
+	win.projectionMatrix.SetOrthoProjection(-3.55, 3.55, -2.0f, 2.0f, -1.0f, 1.0f);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glUseProgram(program.programID);
@@ -110,17 +128,27 @@ int main(int argc, char *argv[]){
 				done = true;
 			}
 			else if (event.type == SDL_KEYDOWN) {
-				//player 2 keys
-				if (event.key.keysym.scancode == SDL_SCANCODE_UP) { plyr2.direction = 1; }
-				else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN) { plyr2.direction = -1; }
+				if (game) {
+					//player 2 keys
+					if (event.key.keysym.scancode == SDL_SCANCODE_UP) { plyr2.direction = 1; }
+					else if (event.key.keysym.scancode == SDL_SCANCODE_DOWN) { plyr2.direction = -1; }
 
-				//player 1 keys
-				if (event.key.keysym.scancode == SDL_SCANCODE_W) { plyr1.direction = 1; }
-				else if (event.key.keysym.scancode == SDL_SCANCODE_S) { plyr1.direction = -1; }
-				if (event.key.keysym.scancode == SDL_SCANCODE_SPACE) { 
-					if (game == false) {
+					//player 1 keys
+					if (event.key.keysym.scancode == SDL_SCANCODE_W) { plyr1.direction = 1; }
+					else if (event.key.keysym.scancode == SDL_SCANCODE_S) { plyr1.direction = -1; }
+				}
+				else if (game == false) {
+					if (event.key.keysym.scancode == SDL_SCANCODE_SPACE) {
 						game = true;
 						//reset game
+						plyr1.pos_y = 0;
+						plyr2.pos_y = 0;
+						ball.pos_x = 0;
+						ball.pos_y = 0;
+						speed = 1.0;
+						ball.dir_x = 0.7;
+						ball.dir_y = 0.7;
+						win.pos_x = 4.0;
 					}
 				}
 			}
@@ -151,6 +179,13 @@ int main(int argc, char *argv[]){
 			ball.dir_x = 0;
 			ball.dir_y = 0;
 			game = false;
+			if (ball.pos_x + ball.width / 2 >= 3.55 ) {
+				win.pos_x = 2.5;
+				
+			}
+			else if (ball.pos_x - ball.width / 2 <= -3.55) {
+				win.pos_x = -2.5;
+			}
 		}
 
 		//ball hits player1
@@ -188,9 +223,7 @@ int main(int argc, char *argv[]){
 		ball.pos_y += elapsed * ball.dir_y*speed;
 		ball.Draw();
 				
-		if (game == false) {
-			//draw win
-		}
+		win.Draw();
 
 		program.SetModelMatrix(plyr1.modelMatrix);
 		program.SetProjectionMatrix(plyr1.projectionMatrix);
@@ -226,6 +259,19 @@ int main(int argc, char *argv[]){
 
 		program.SetModelMatrix(ball.modelMatrix);
 		glBindTexture(GL_TEXTURE_2D, txtr_ball);
+
+		glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices);
+		glEnableVertexAttribArray(program.positionAttribute);
+
+		glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords);
+		glEnableVertexAttribArray(program.texCoordAttribute);
+
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glDisableVertexAttribArray(program.positionAttribute);
+		glDisableVertexAttribArray(program.texCoordAttribute);
+
+		program.SetModelMatrix(win.modelMatrix);
+		glBindTexture(GL_TEXTURE_2D, txtr_win);
 
 		glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices);
 		glEnableVertexAttribArray(program.positionAttribute);
