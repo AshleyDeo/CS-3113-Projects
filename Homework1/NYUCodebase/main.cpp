@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 
 	//Setup
 	glViewport(0, 0, 640, 360);
-	//untextures
+	//untextured
 	ShaderProgram program;
 	program.Load(RESOURCE_FOLDER "vertex.glsl", RESOURCE_FOLDER "fragment.glsl");
 	Matrix projectionMatrix;

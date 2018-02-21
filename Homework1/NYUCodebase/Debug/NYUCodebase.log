@@ -1,7 +1,5 @@
 ﻿  main.cpp
-d:\documents\github\cs-3113-projects\hw1\nyucodebase\main.cpp(47): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\documents\github\cs-3113-projects\hw1\nyucodebase\main.cpp(78): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\documents\github\cs-3113-projects\hw1\nyucodebase\main.cpp(79): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\documents\github\cs-3113-projects\hw1\nyucodebase\main.cpp(80): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\documents\github\cs-3113-projects\hw1\nyucodebase\main.cpp(108): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-  NYUCodebase.vcxproj -> D:\Documents\Github\CS-3113-Projects\HW1\Debug\NYUCodebase.exe
+d:\documents\github\cs-3113-projects\homework1\nyucodebase\main.cpp(47): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework1\nyucodebase\main.cpp(78): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework1\nyucodebase\main.cpp(104): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  NYUCodebase.vcxproj -> D:\Documents\Github\CS-3113-Projects\Homework1\Debug\NYUCodebase.exe
