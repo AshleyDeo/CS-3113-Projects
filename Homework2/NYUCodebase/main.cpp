@@ -17,12 +17,12 @@
 #endif
 
 SDL_Window* displayWindow;
-
+void DrawText(ShaderProgram *program, int fontTexture, std::string text, float size, float spacing);
 //functions
 GLuint LoadTexture(const char *filePath);
 class Player {
 public:
-	Player(float pos_x) :pos_x(pos_x) {}
+	Player(float pos_x) : pos_x(pos_x) {}
 	Matrix projectionMatrix;
 	Matrix modelMatrix;
 	Matrix viewMatrix;
@@ -96,6 +96,8 @@ int main(int argc, char *argv[]){
 	GLuint txtr_plyr2 = LoadTexture(RESOURCE_FOLDER"Images/paddleRed.png");
 	GLuint txtr_ball = LoadTexture(RESOURCE_FOLDER"Images/ballBlue.png");
 	GLuint txtr_win = LoadTexture(RESOURCE_FOLDER"Images/Win.png");
+	GLuint fontTexture = LoadTexture(RESOURCE_FOLDER"Images/font1.png");
+
 
 	float angle = 0.0;
 	float speed = 1.0;
@@ -109,7 +111,8 @@ int main(int argc, char *argv[]){
 	//ball
 	Ball ball;
 	Win win;
-
+	Matrix model;
+	
 	plyr1.projectionMatrix.SetOrthoProjection(-3.55, 3.55, -2.0f, 2.0f, -1.0f, 1.0f);
 	plyr2.projectionMatrix.SetOrthoProjection(-3.55, 3.55, -2.0f, 2.0f, -1.0f, 1.0f);
 	ball.projectionMatrix.SetOrthoProjection(-3.55, 3.55, -2.0f, 2.0f, -1.0f, 1.0f);
@@ -117,7 +120,7 @@ int main(int argc, char *argv[]){
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glUseProgram(program.programID);
-
+	
 	//End Setup
 	//Running program
 	SDL_Event event;
@@ -222,7 +225,9 @@ int main(int argc, char *argv[]){
 		ball.pos_x += elapsed * ball.dir_x*speed;
 		ball.pos_y += elapsed * ball.dir_y*speed;
 		ball.Draw();
-				
+		model.Identity();
+		program.SetModelMatrix(model);
+		DrawText(&program, fontTexture, "Rounds: ", 1.0f, 0.5f);
 		win.Draw();
 
 		program.SetModelMatrix(plyr1.modelMatrix);
@@ -309,4 +314,40 @@ GLuint LoadTexture(const char *filePath) {
 	stbi_image_free(image);
 	return retTexture;
 }
+void DrawText(ShaderProgram *program, int fontTexture, std::string text, float size, float spacing) {
+	glBindTexture(GL_TEXTURE_2D, fontTexture);
+	float texture_size = 1.0 / 16.0f;
+	std::vector<float> vertexData;
+	std::vector<float> texCoordData;
 
+	for (int i = 0; i < text.size(); i++) {
+		int spriteIndex = (int)text[i];
+		float texture_x = (float)(spriteIndex % 16) / 16.0f;
+		float texture_y = (float)(spriteIndex / 16) / 16.0f;
+
+		vertexData.insert(vertexData.end(), {
+			((size + spacing) * i) + (-0.5f * size), 0.5f * size,
+			((size + spacing) * i) + (-0.5f * size), -0.5f * size,
+			((size + spacing) * i) + (0.5f * size), 0.5f * size,
+			((size + spacing) * i) + (0.5f * size), -0.5f * size,
+			((size + spacing) * i) + (0.5f * size), 0.5f * size,
+			((size + spacing) * i) + (-0.5f * size), -0.5f * size,
+			});
+		texCoordData.insert(texCoordData.end(), {
+			texture_x, texture_y,
+			texture_x, texture_y + texture_size,
+			texture_x + texture_size, texture_y,
+			texture_x + texture_size, texture_y + texture_size,
+			texture_x + texture_size, texture_y,
+			texture_x, texture_y + texture_size,
+			});
+	}
+
+	glVertexAttribPointer(program->positionAttribute, 2, GL_FLOAT, false, 0, vertexData.data());
+	glEnableVertexAttribArray(program->positionAttribute);
+	glVertexAttribPointer(program->texCoordAttribute, 2, GL_FLOAT, false, 0, texCoordData.data());
+	glEnableVertexAttribArray(program->texCoordAttribute);
+	glDrawArrays(GL_TRIANGLES, 0, text.length() * 6);
+	glDisableVertexAttribArray(program->positionAttribute);
+	glDisableVertexAttribArray(program->texCoordAttribute);
+}
