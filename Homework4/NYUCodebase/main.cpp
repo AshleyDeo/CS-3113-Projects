@@ -126,8 +126,9 @@ void worldToTileCoordinates(float worldX, float worldY, int *gridX, int *gridY) 
 class Player : public Object {
 public:
 	Player() : Object() {
+		direction.y = 0;
 		velocity.x = 5;
-		velocity.y = 5;
+		velocity.y = 0.5;
 		scale.x = 0.5;
 		scale.y = 0.5;
 	}
@@ -151,6 +152,7 @@ int c_index = 0;
 float lastFrameTicks = 0.0f;
 Matrix projectionMatrix;
 Matrix viewMatrix;
+float gravity = -2.0;
 
 int main(int argc, char *argv[]) {
 	SDL_Init(SDL_INIT_VIDEO);
@@ -254,8 +256,9 @@ void Map::Draw(ShaderProgram *program) {
 }
 
 void Player::Update(float elapsed) {
+	velocity.y += gravity * elapsed;
 	position.x += velocity.x * elapsed * direction.x;
-	position.y += velocity.y * elapsed * direction.y;
+	position.y += velocity.y * elapsed;
 	for (Collectible& collectible : collectibles) {
 		if (!collectible.taken) {
 			if (collectible.position.x >= position.x - (scale.x / 2.0) && collectible.position.x <= position.x + (scale.x / 2.0)
@@ -292,10 +295,15 @@ void Events(SDL_Event* event, bool& done) {
 			else if (event->key.keysym.scancode == SDL_SCANCODE_LEFT) {
 				player.direction.x = -1; player.scale.x = -0.5;
 			}
+			if (event->key.keysym.scancode == SDL_SCANCODE_RETURN) {
+				player.velocity.y = 2.0;
+			}
 		}
 		else if (event->type == SDL_KEYUP) {
-			player.direction.x = 0;
-			player.direction.y = 0;
+			if (event->key.keysym.scancode == SDL_SCANCODE_RIGHT|| event->key.keysym.scancode == SDL_SCANCODE_LEFT) {
+				player.direction.x = 0;
+				player.direction.y = 0;
+			}
 		}
 	}
 }
@@ -306,7 +314,7 @@ void Update() {
 	int* gridX = new int(0);
 	int* gridY = new int(0);
 	worldToTileCoordinates(player.position.x, player.position.y, gridX, gridY);
-	player.direction.y = -0.5;
+	player.Update(elapsed);
 	for (int y = 0; y < fmap.mapHeight; y++) {
 		for (int x = 0; x < fmap.mapWidth; x++) {
 			if (fmap.mapData[y][x] != 12 && fmap.mapData[y][x] != 33 && fmap.mapData[y][x] != 30
@@ -319,17 +327,16 @@ void Update() {
 					player.position.x += 0.005;
 				}
 				if (player.position.y - player.scale.y / 2 <= (y * -TILE_SIZE) && *gridY <= y && *gridX == x) {
-					player.direction.y = 0;
+					player.velocity.y = 0;
 					player.position.y += 0.001;
 				}
 				else if (player.position.y + fabs(player.scale.y / 2) >= (y * -TILE_SIZE) - TILE_SIZE && *gridY >= y && *gridX == x) {
-					player.direction.y = 0;
+					player.velocity.y = 0;
 					player.position.y -= 0.001;
 				}
 			}
 		}
 	}
-	player.Update(elapsed);
 }
 
 void Render(ShaderProgram *program) {
@@ -337,7 +344,6 @@ void Render(ShaderProgram *program) {
 	glClearColor(136 / 255, 255 / 255, 255 / 255, 1.0f);
 	viewMatrix.Identity();
 	viewMatrix.Translate(-player.position.x, -player.position.y, 0.0);
-	//viewMatrix.Translate(-1.0, 3.55/2.0, 0.0);
 	program->SetViewMatrix(viewMatrix);
 	map.Draw(program);
 	for (Collectible& collectible : collectibles) {

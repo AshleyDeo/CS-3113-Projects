@@ -44,7 +44,4 @@
     <None Include="vertex.glsl" />
     <None Include="fragment_textured.glsl" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Text.txt" />
-  </ItemGroup>
 </Project>

@@ -3,16 +3,16 @@ d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(71): warning
 d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(77): warning C4305: 'initializing': truncation from 'double' to 'float'
 d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(78): warning C4305: 'initializing': truncation from 'double' to 'float'
 d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(88): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(142): warning C4305: '=': truncation from 'double' to 'float'
 d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(143): warning C4305: '=': truncation from 'double' to 'float'
-d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(169): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(214): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(215): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(244): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(278): warning C4018: '<': signed/unsigned mismatch
-d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(319): warning C4305: '+=': truncation from 'double' to 'float'
-d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(323): warning C4305: '+=': truncation from 'double' to 'float'
-d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(327): warning C4305: '-=': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(144): warning C4305: '=': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(171): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(216): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(217): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(246): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(281): warning C4018: '<': signed/unsigned mismatch
+d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(327): warning C4305: '+=': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(331): warning C4305: '+=': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework4\nyucodebase\main.cpp(335): warning C4305: '-=': truncation from 'double' to 'float'
   Generating Code...
   Skipping... (no relevant changes detected)
   ShaderProgram.cpp

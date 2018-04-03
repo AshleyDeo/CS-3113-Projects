@@ -91,9 +91,6 @@
     <None Include="fragment_textured.glsl" />
     <None Include="vertex.glsl" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Text.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
