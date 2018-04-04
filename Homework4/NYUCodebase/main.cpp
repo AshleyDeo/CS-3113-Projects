@@ -295,7 +295,7 @@ void Events(SDL_Event* event, bool& done) {
 			else if (event->key.keysym.scancode == SDL_SCANCODE_LEFT) {
 				player.direction.x = -1; player.scale.x = -0.5;
 			}
-			if (event->key.keysym.scancode == SDL_SCANCODE_RETURN) {
+			if (event->key.keysym.scancode == SDL_SCANCODE_SPACE) {
 				player.velocity.y = 2.0;
 			}
 		}
