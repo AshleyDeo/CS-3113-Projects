@@ -1,0 +1,19 @@
+﻿  main.cpp
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(54): warning C4018: '<': signed/unsigned mismatch
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(111): warning C4244: 'argument': conversion from 'float' to 'const unsigned int', possible loss of data
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(127): warning C4305: '=': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(148): warning C4305: '=': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(149): warning C4305: '=': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(199): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(227): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(383): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(390): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(391): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(399): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(403): warning C4305: '=': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(498): warning C4305: '=': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(580): warning C4305: '=': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(581): warning C4305: '=': truncation from 'double' to 'float'
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(616): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\documents\github\cs-3113-projects\homework3 - sound added\nyucodebase\main.cpp(617): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  NYUCodebase.vcxproj -> D:\Documents\Github\CS-3113-Projects\Homework3 - SOUND ADDED\Debug\Space Invaders.exe

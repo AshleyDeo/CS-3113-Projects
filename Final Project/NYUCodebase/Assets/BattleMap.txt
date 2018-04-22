@@ -1,0 +1,29 @@
+[header]
+width=6
+height=8
+tilewidth=40
+tileheight=10
+orientation=orthogonal
+background_color=0,0,0,255
+
+[tilesets]
+tileset=Final Project Sprites/bn4_panels.gif,40,10,0,0
+tileset=Sprites/bn4_panels.jpg,40,10,0,0
+
+[layer]
+type=layer
+data=
+99,99,99,3,3,3,
+111,111,111,15,15,15,
+123,123,123,27,27,27,
+135,135,135,39,39,39,
+147,147,147,51,51,51,
+159,159,159,63,63,63,
+171,171,171,75,75,75,
+183,183,183,87,87,87
+
+[ObjectsLayer]
+# player
+type=player_start
+location=0,4,0,1
+

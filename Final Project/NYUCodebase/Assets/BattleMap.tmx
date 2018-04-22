@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.4" orientation="orthogonal" renderorder="right-down" width="6" height="8" tilewidth="40" tileheight="10" infinite="0" nextobjectid="5">
+ <tileset firstgid="1" source="Battle.tsx"/>
+ <tileset firstgid="1" source="Battle.tsx"/>
+ <layer name="layer" width="6" height="8">
+  <data encoding="base64">
+   YwAAAGMAAABjAAAAAwAAAAMAAAADAAAAbwAAAG8AAABvAAAADwAAAA8AAAAPAAAAewAAAHsAAAB7AAAAGwAAABsAAAAbAAAAhwAAAIcAAACHAAAAJwAAACcAAAAnAAAAkwAAAJMAAACTAAAAMwAAADMAAAAzAAAAnwAAAJ8AAACfAAAAPwAAAD8AAAA/AAAAqwAAAKsAAACrAAAASwAAAEsAAABLAAAAtwAAALcAAAC3AAAAVwAAAFcAAABXAAAA
+  </data>
+ </layer>
+ <objectgroup name="ObjectsLayer">
+  <object id="4" name="player" type="player_start" gid="0" x="13.4545" y="40.4545" width="13.6364" height="10.5455"/>
+ </objectgroup>
+</map>
