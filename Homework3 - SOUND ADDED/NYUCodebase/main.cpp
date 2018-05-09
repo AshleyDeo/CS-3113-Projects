@@ -408,7 +408,7 @@ void Setup() {
 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
 	gameLevel.pShootSound = Mix_LoadWAV("Music/shoot.wav");
 	gameLevel.destroySound = Mix_LoadWAV("Music/kill.wav");
-	mainMenu.music = Mix_LoadMUS("Music/MainMenuTheme.wav");
+	mainMenu.music = Mix_LoadMUS("Music/RideOn_MMSF.wav");
 	gameLevel.music = Mix_LoadMUS("Music/GameTheme.wav");
 	
 	Mix_PlayMusic(mainMenu.music, -1);
